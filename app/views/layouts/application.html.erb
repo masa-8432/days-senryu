@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DaysSenryu</title>
+    <title>日々川柳</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +9,46 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header class="navigation">
+    <div class="container">
+      <!--ヘッダーのロゴ-->
+      <nav class="nav navbar-nav nav-left">
+        <%= link_to root_path do %>
+        <%= image_tag "logo.png" %>
+        <% end %>
+      </nav>
+      <!--ヘッダーのナビゲーション-->
+      <nav class="nav">
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <!--ログインしている場合-->
+            <li class="nav"><p>ようこそ<%= current_user.name %>さん</p></li>
+            <li class="nav"><%= link_to 'マイページ', user_path(current_user) %></li>
+            <li class="nav"><%= link_to 'ログアウト', destroy_user_session_path %></li>
+           <% else %>
+           <!--ログインしていない場合-->
+            <li class="nav"><%= link_to 'about', about_path %></li>
+            <li class="nav"><%= link_to 'ログイン', new_user_session_path %></li>
+            <li class="nav"><%= link_to '新規登録', new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <!--ログインしている時のみメニューバー表示-->
+      <% if user_signed_in? %>
+        <nav class="menu-bar">
+          <ul class="nav navbar-nav" style="padding-left: 170px;">
+            <li class="menu"><i class="fas fa-indent">&nbsp<%= link_to '投稿一覧', posts_path %></i></li>
+            <li class="menu"><i class="fas fa-plus-square">&nbsp<%= link_to '投稿する', new_post_path %></i></li>
+            <li class="menu"><i class="fas fa-crown">&nbsp<%= link_to 'ランキング', ranking_posts_path %></i></li>
+            <li class="menu"><i class="fas fa-comment-dots">&nbsp<%= link_to 'コメント募集', comment_posts_path %></i></li>
+          </ul>
+        </nav>
+      <% end %>
+    </div>
+  </header>
+
   <body>
     <%= yield %>
   </body>
+
 </html>
