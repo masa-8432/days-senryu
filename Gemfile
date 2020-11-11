@@ -69,3 +69,7 @@ gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
 gem 'font-awesome-sass'
 gem 'rubocop-airbnb'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
