@@ -1,0 +1,9 @@
+<!--メニューバー表示-->
+  <nav class="menu-bar">
+    <ul class="nav navbar-nav" style="padding-left: 170px;">
+      <li class="menu"><i class="fas fa-indent">&nbsp<%= link_to '投稿一覧', posts_path %></i></li>
+      <li class="menu"><i class="fas fa-plus-square">&nbsp<%= link_to '投稿する', new_post_path %></i></li>
+      <li class="menu"><i class="fas fa-crown">&nbsp<%= link_to 'ランキング', ranking_posts_path %></i></li>
+      <li class="menu"><i class="fas fa-comment-dots">&nbsp<%= link_to 'コメント募集', comment_posts_path %></i></li>
+    </ul>
+  </nav>
