@@ -13,21 +13,22 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+ @import 'bootstrap';
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- body{
-  background-color: #CCCC99;
+ *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
  }
+
 
  .menu-bar{
   margin-top: 20px;
   padding: 10px auto ;
   height: 60px;
   color: #6091d3;
-  background-color: white;
   border: solid 2px #6091d3;
  }
 
@@ -35,4 +36,14 @@
  width: 200px;
  padding: 10px 20px;
  font-size: 20px;
+}
+
+footer{
+ height: 80px;
+ background-color: #669966;
+}
+
+.footer-body{
+ margin: 0 auto;
+ color: white;
 }
