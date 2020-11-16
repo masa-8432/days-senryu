@@ -12,18 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_11_05_092337) do
 
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
@@ -50,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_11_05_092337) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "gender", default: 0, null: false
-    t.integer "age", default: 0, null: false
+    t.integer "gender", null: false
+    t.integer "age", null: false
     t.boolean "is_dleted", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

@@ -1,0 +1,9 @@
+<%= render 'layouts/menu' %>
+
+<div class="container">
+ <% @posts.each do |post| %>
+
+<%= render 'posts/list', post: post %>
+
+ <% end %>
+</div>

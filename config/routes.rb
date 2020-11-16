@@ -9,10 +9,8 @@ Rails.application.routes.draw do
 
   # ルートパス(TOPページ)
   root 'homes#top'
-  # aboutページ
-  get '/about' => 'homes#about', as: 'about'
 
-  # 会員側のルーティング
+  # ユーザールーティング
   resources :users, only: [:show, :edit, :update] do
     member do
       get 'withdrawal' => 'users#withdrawal_show'
