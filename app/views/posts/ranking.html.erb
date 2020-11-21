@@ -1,0 +1,8 @@
+<div class="container">
+
+  <% @rank.each do |post| %>
+  今日の一句
+  <%= render 'posts/list', post: post %>
+  <% end %>
+
+</div>

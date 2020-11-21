@@ -1,0 +1,15 @@
+
+<div class="container">
+
+  <%= form_with model: @post, url: post_path, method: :patch, local: true do |f| %>
+
+  <%= render 'posts/post', f: f %>
+
+  <div class="row form-group justify-content-center">
+
+  <%= f.submit '更新する', class: "col-2 btn btn-danger btn-lg" %>
+  </div>
+
+  <% end %>
+
+</div>

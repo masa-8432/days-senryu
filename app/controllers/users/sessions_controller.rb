@@ -29,4 +29,8 @@ class Users::SessionsController < Devise::SessionsController
     posts_path
   end
 
+  def reject_user
+
+  end
+
 end

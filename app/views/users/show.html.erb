@@ -1,0 +1,66 @@
+
+
+<div class="container">
+
+  <div class="row justify-content-center login">
+    <div class="col-6">
+      <h2><%= @user.name %>さんのページ</h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <label class="col-2">ニックネーム</label>
+    <div class="col-4"><%= @user.name %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <label class="col-2">性別</label>
+    <div class="col-4"><%= @user.gender %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <label class="col-2">年齢</label>
+    <div class="col-4"><%= @user.age %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <label class="col-2">メールアドレス</label>
+    <div class="col-4"><%= @user.email %></div>
+
+  </div>
+
+
+   <div class="row justify-content-center">
+  <% if current_user.id == @user.id %>
+    <%= link_to '編集', edit_user_path(@user.id), class: "btn btn-danger col-1" %>
+  <% end %>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <label class="col-2">総投稿数</label>
+    <div class="col-4">
+    <%= link_to post_user_path(@user.id) do %>
+      <%= @user.posts.count %>句
+    <% end %>
+    </div>
+  </div>
+
+  <% if current_user.id == @user.id %>
+  <div class="row justify-content-center">
+    <label class="col-2">いいねした投稿</label>
+    <%= link_to '一覧を見る', like_user_path(@user.id), class: "col-4" %>
+  </div>
+
+    <div class="row justify-content-end mt-5">
+    <%= link_to '退会する', withdrawal_user_path(@user.id), method: :get, class: "btn btn-danger btn-sm col-1" %>
+    </div>
+  <% end %>
+
+
+
+
+</div>
+

@@ -10,8 +10,8 @@
   </head>
 
 
-  <header>
-      <nav class="navbar fixed-top">
+  <header class="fixed-top">
+      <nav class="navbar">
         <!--ヘッダーのロゴ-->
       <%= link_to root_path do %>
         <%= image_tag "logo.png", class:"navbar-brand" %>
@@ -32,10 +32,28 @@
         </ul>
         </div>
       </nav>
+
+         <!--メニューバー表示-->
+      <% if user_signed_in? %>
+  <nav class="navbar nav justify-content-center menu-bar">
+
+    <ul class="nav">
+      <li class="menu"><i class="fas fa-indent">&nbsp<%= link_to '投稿一覧', posts_path %></i></li>
+      <li class="menu"><i class="fas fa-plus-square">&nbsp<%= link_to '投稿する', new_post_path %></i></li>
+      <li class="menu"><i class="fas fa-crown">&nbsp<%= link_to 'ランキング', ranking_posts_path %></i></li>
+      <li class="menu"><i class="fas fa-comment-dots">&nbsp<%= link_to 'コメント募集', comment_posts_path %></i></li>
+    </ul>
+    <% end %>
+  </nav>
     </header>
 
 
   <body>
+
+    <% if flash[:notice] %>
+    <p class="alert alert-danger"><%= flash[:notice] %></p>
+  <% end %>
+
     <%= yield %>
   </body>
 

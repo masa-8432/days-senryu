@@ -1,35 +1,15 @@
-<%= render 'layouts/menu' %>
+
 
 <div class="container">
   <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
 
-  <div class="row form-group justify-content-center mt-5">
-  <label class="col-offset-2 col-3">お題</label>
-  <div class="col-4">
-  <%= f.text_field :theme, class:"form-control" %>
-  </div>
-  </div>
+ <%= render 'posts/post', f: f %>
 
-  <div class="row form-group justify-content-center">
-  <label class="col-3">本文</label>
-  <div class="col-4">
-  <%= f.text_area :text, class:"form-control" %>
-  </div>
-  </div>
  <div class="row form-group justify-content-center">
-  <label class="col-3">コメントを募集しますか？</label>
-  <div class="col-6">
-  <%= f.radio_button :comment_status, 'true' %>はい
-  <%= f.radio_button :comment_status, 'false', checked: true %>いいえ</br>
-  <p>はいを選択をすると、コメント募集ページに二日間投稿がのります。</p>
-  </div>
+
+  <%= f.submit '投稿する', class: "col-2 btn btn-danger btn-lg" %>
   </div>
 
-
-  <div class="row form-group justify-content-center">
-    <div class="col-2">
-  <%= f.submit '投稿', class: "btn btn-danger btn-lg" %>
-  </div>
 
   <% end %>
 

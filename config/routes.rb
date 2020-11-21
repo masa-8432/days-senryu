@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     member do
       get 'withdrawal' => 'users#withdrawal_show'
       patch 'withdrawal'
+      get 'post'
+      get 'like'
     end
+
   end
   resources :posts do
     member do
@@ -26,7 +29,7 @@ Rails.application.routes.draw do
       get 'comment'
     end
     resources :post_comments, only: [:create, :update, :destroy]
-    resources :favorites, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
   get '/search' => 'searchs#search', as: 'search'
 
