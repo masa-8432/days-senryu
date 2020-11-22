@@ -1,0 +1,16 @@
+<div class="container" >
+ <% @posts.each do |post| %>
+
+   <div class="row">
+      <div class="post">
+        <%= render 'posts/item', post: post %>
+        <div class="sub">
+          <%= render 'posts/time', post: post %>
+          <%= render partial: 'posts/favorite', locals: {post: post} %>
+          <%= render 'posts/comment', post: post %>
+        </div>
+      </div>
+   </div>
+ <% end %>
+
+</div>
