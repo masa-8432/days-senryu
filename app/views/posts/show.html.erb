@@ -1,3 +1,5 @@
+<%= render 'layouts/errors', obj: @comment %>
+
 <div class="container">
 
   <div class="row">
@@ -23,6 +25,8 @@
       <%= f.submit '投稿', class:"col-1 btn btn-danger form-control" %>
     <% end %>
   </div>
+
+  <% if @post.post_comments.count != 0 %>
 
   <div class="row comment-index">
     <% @post.post_comments.each do |comment| %>
@@ -51,8 +55,18 @@
           <% end %>
         </div>
 
+      <% else %>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+
       <% end %>
 
     <% end %>
+
+    <% else %>
+
+    コメントはまだありません
+
+     <% end %>
   </div>
 </div>

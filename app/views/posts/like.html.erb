@@ -2,9 +2,10 @@
 
 <h2>この投稿にいいねしたユーザー</h2>
 
-<div class="row justify-content-center">
-<% @post.favorited_users.each do |user| %>
+<% if @post.favorited_users.count != 0 %>
 
+  <% @post.favorited_users.each do |user| %>
+<div class="row justify-content-center">
   <div class="col-2">
   <%= link_to user_path(user) do %>
    <%= user.name %>さん
@@ -14,10 +15,18 @@
 
   <p class"col-1">投稿数</p>
   <div class="col-2">
+   <%= link_to post_user_path(user) do %>
   <%= user.posts.count %>句
+  <% end %>
   </div>
+</div>
+<% end %>
+
+<% else %>
+
+まだいません
 
 <% end %>
 
-</div>
+
 </div>

@@ -26,12 +26,12 @@
     </div>
   </div>
 
+  <% if current_user.id == @user.id %>
   <div class="row justify-content-center">
     <label class="col-2">メールアドレス</label>
     <div class="col-4"><%= @user.email %></div>
-
   </div>
-
+  <% end %>
 
    <div class="row justify-content-center">
   <% if current_user.id == @user.id %>

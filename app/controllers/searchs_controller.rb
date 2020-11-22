@@ -9,12 +9,8 @@ class SearchsController < ApplicationController
     @type = params["model"]
     # 検索ワード
     @content = params["content"]
-    logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2222@@@@@@@@@@@")
-    logger.debug(params)
     if @type == "theme"
       @posts = partical_theme(@content).page(params[:page]).per(10)
-      logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2222@@@@@@@@@@@")
-      logger.debug('theme !!!!')
       if @posts.count == 0
         flash[:notice] = "該当する投稿は見つかりませんでした。"
       end

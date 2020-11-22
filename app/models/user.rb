@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :email, presence: true
 
+
   # 性別をenumで管理
   enum gender: {'男性': 0, '女性': 1, 'その他': 2}
 

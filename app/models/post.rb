@@ -9,7 +9,6 @@ class Post < ApplicationRecord
   #バリデーション
   validates :theme, presence: true
   validates :text, presence: true
-  validates :comment_status, presence: true
 
 
   #投稿に対していいねが存在しているか

@@ -68,8 +68,9 @@
   <body>
 
     <% if flash[:notice] %>
-    <p class="alert alert-danger"><%= flash[:notice] %></p>
+    <p class="alert alert-success"><%= flash[:notice] %></p>
   　<% end %>
+  　
 
     <%= yield %>
   </body>
