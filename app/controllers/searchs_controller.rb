@@ -4,32 +4,35 @@ class SearchsController < ApplicationController
   before_action :authenticate_user!
 
   def search
-
+    @posts = Post.all
     # 検索対象のモデル："User","Post"
-    @model = params["model"]
+    @type = params["model"]
     # 検索ワード
     @content = params["content"]
-
-    if @model == "Post"
-      @themes = partical_theme(@content).page(params[:page]).per(10)
-      if @themes.count == 0
-        flash.now[:alert] = "該当する投稿は見つかりませんでした。"
+    logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2222@@@@@@@@@@@")
+    logger.debug(params)
+    if @type == "theme"
+      @posts = partical_theme(@content).page(params[:page]).per(10)
+      logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2222@@@@@@@@@@@")
+      logger.debug('theme !!!!')
+      if @posts.count == 0
+        flash[:notice] = "該当する投稿は見つかりませんでした。"
       end
-      render "index"
-    elsif
-      @model == "Post"
-      @texts = partical_text(@content).page(params[:page]).per(10)
-      if @texts.count == 0
-        flash.now[:alert] = "該当する投稿は見つかりませんでした。"
+      render "/posts/index"
+    elsif @type == "text"
+      @posts = partical_text(@content).page(params[:page]).per(10)
+      if @posts.count == 0
+        flash[:notice] = "該当する投稿は見つかりませんでした。"
       end
-      render "index"
+      render "/posts/index"
+    elsif @type == "user"
+      @posts = partical_user(@content).page(params[:page]).per(10)
+      if @posts.count == 0
+        flash[:notice] = "該当する投稿は見つかりませんでした。"
+      end
+      render "/posts/index"
     else
-      @model == "Post"
-      @users = partical_user(@content).page(params[:page]).per(10)
-      if @users.count == 0
-        flash.now[:alert] = "該当する投稿は見つかりませんでした。"
-      end
-      render "index"
+       render "/posts/index"
     end
   end
 
@@ -47,7 +50,7 @@ class SearchsController < ApplicationController
 
    # 投稿者検索
   def partical_user(content)
-      Post.left_outer_joins(:user).where("user.name LIKE ?", "%#{content}%")
+      Post.left_outer_joins(:user).where("name LIKE ?", "%#{content}%")
   end
 
 

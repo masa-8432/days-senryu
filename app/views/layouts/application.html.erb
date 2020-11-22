@@ -40,12 +40,12 @@
     <ul class="nav">
       <li class="menu"><i class="fas fa-indent">&nbsp<%= link_to '投稿一覧', posts_path %></i></li>
       <li class="menu"><i class="fas fa-plus-square">&nbsp<%= link_to '投稿する', new_post_path %></i></li>
-      <li class="menu"><i class="fas fa-crown">&nbsp<%= link_to 'ランキング', ranking_posts_path %></i></li>
+      <li class="menu"><i class="fas fa-crown">&nbsp<%= link_to '今日の一句', ranking_posts_path %></i></li>
       <li class="menu"><i class="fas fa-comment-dots">&nbsp<%= link_to 'コメント募集', comment_posts_path %></i></li>
       <div class="row justify-content-cemter search">
             <%= form_with url: search_path, method: :get, class: "form-inline", local: true do |f| %>
               <div class="bar">
-                <%= f.select :model, [["お題","Post"],["川柳","Post"],["投稿ユーザー","Post"]], {}, {class: "form-control input-sm"} %>
+                <%= f.select :model, [["お題","theme"],["川柳","text"],["投稿ユーザー","user"]], {}, {class: "form-control input-sm"} %>
               </div>
               <div class="bar">
                 <%= f.text_field :content, :placeholder => "Search", class: "form-control input-sm" %>
