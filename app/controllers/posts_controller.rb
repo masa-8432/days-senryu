@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  
+
   # ログインユーザのみアクセス許可
   before_action :authenticate_user!
 
@@ -54,24 +54,21 @@ class PostsController < ApplicationController
   end
 
   def ranking
-    # ToDo
-    # select A.id, A.theme, A.text, B.count 　最終的に表示するデータ
-    #from posts AS A left join (select count(*) as count, post_id from favorites group by post_id) AS B 　この中から
-    #on A.id = B.post_id where date(A.updated_at) = date(current_timestamp)  order by count desc;　　　　これを取り出して
-[]
-    #@rank = Post.find(Post.group(:updated_at).order('count(post_id) desc').limit(1).pluck(:post_id))
-    #postとfavoriteを結合して、今日の投稿のものを取り出す
+    #日付を変数にいれる
     today = Date.today
     yesterday = today.ago(1.days)
     day_before_yesterday = today.ago(2.days)
+    #それぞれの投稿日のいいね数が一番のものを取り出す
     @today = Post.find(Favorite.includes(:post).where(posts: { created_at: today.beginning_of_day..today.end_of_day }).group(:post_id).order('count(post_id) desc').limit(1).pluck(:post_id))
     @yesterday = Post.find(Favorite.includes(:post).where(posts: { created_at: yesterday.beginning_of_day..yesterday.end_of_day }).group(:post_id).order('count(post_id) desc').limit(1).pluck(:post_id))
-    @day_before_yesterday =  Post.find(Favorite.includes(:post).where(posts: { created_at: day_before_yesterday.beginning_of_day..day_before_yesterday.end_of_day }).group(:post_id).order('count(post_id) desc').pluck(:post_id))
-    # @posts = Post.joins(:favorite).where(Post.updated_at.to_s.match(/#{Date.today.to_s}.+/))
-    # @post = @posts.find(Post.group(:post.id).order('count(post_id) desc').limit(1).pluck(:post.id))
+    @day_before_yesterday =  Post.find(Favorite.includes(:post).where(posts: { created_at: day_before_yesterday.beginning_of_day..day_before_yesterday.end_of_day }).group(:post_id).order('count(post_id) desc').limit(1).pluck(:post_id))
+  end
 
-
-    # where date(current_timestamp,'-2 days') <= date(A.updated_at) and comment_status = 1  order by count desc;
+  def comment
+    #コメントステータスがtrue（募集の投稿を取り出す）
+    #最終編集瓶から２日たっているものは表示しないようにする（ステータスの切替はしない
+    date = Date.today - 2
+    @posts = Post.where(comment_status: true).where("updated_at >= '#{date}'").order(created_at: "DESC")
   end
 
   private
