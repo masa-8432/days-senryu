@@ -1,5 +1,5 @@
 class PostCommentsController < ApplicationController
-  
+
   # ログインユーザのみアクセス許可
   before_action :authenticate_user!
 
@@ -10,11 +10,25 @@ class PostCommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "コメントの投稿が完了しました"
       redirect_to request.referer
+    else
+      render '/posts/show'
     end
   end
 
-  def update
+  def edit
+    @post = Post.find(params[:post_id])
+    @comment = PostComment.find(params[:id])
+  end
 
+  def update
+    @post = Post.find(params[:post_id])
+    @comment = PostComment.find(params[:id])
+    if @comment.update(post_comment_params)
+      flash[:notice] = "コメントを更新しました"
+      redirect_to post_path(@post)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
