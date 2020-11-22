@@ -25,12 +25,34 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  def new_guest
+    user = User.guest
+    if sign_in user
+      flash[:notice] = "ゲストユーザーとしてログインしました"
+      redirect_to posts_path
+    else
+      render 'new_guest'
+    end
+  end
+
   def after_sign_in_path_for(resource)
     posts_path
   end
 
-  def reject_user
+  before_action :reject_user, only: [:create]
 
+  protected
+
+  def reject_user
+    @user = User.find_by(email: params[:user][:email])
+    if @user
+      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false ))
+        flash[:notice] = "退会済みのユーザーです"
+        redirect_to new_user_session_path
+      end
+    else
+      flash[:notice] = "必須項目を入力して下さい"
+    end
   end
 
 end

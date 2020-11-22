@@ -1,4 +1,7 @@
 class PostCommentsController < ApplicationController
+  
+  # ログインユーザのみアクセス許可
+  before_action :authenticate_user!
 
   def create
     @post = Post.find(params[:post_id])

@@ -1,8 +1,48 @@
 <div class="container">
 
-  <% @rank.each do |post| %>
-  今日の一句
-  <%= render 'posts/list', post: post %>
+  <% @today.each do |post| %>
+今日の一句
+  <div class="row">
+      <div class="post">
+        <%= render 'posts/item', post: post %>
+        <div class="sub">
+          <%= render 'posts/time', post: post %>
+          <%= render partial: 'posts/favorite', locals: {post: post} %>
+          <%= render 'posts/comment', post: post %>
+        </div>
+      </div>
+   </div>
+
+  <% end %>
+
+  <% @yesterday.each do |post| %>
+昨日の一句
+  <div class="row">
+      <div class="post">
+        <%= render 'posts/item', post: post %>
+        <div class="sub">
+          <%= render 'posts/time', post: post %>
+          <%= render partial: 'posts/favorite', locals: {post: post} %>
+          <%= render 'posts/comment', post: post %>
+        </div>
+      </div>
+   </div>
+
+  <% end %>
+
+  <% @day_before_yesterday.each do |post| %>
+一昨日の一句
+  <div class="row">
+      <div class="post">
+        <%= render 'posts/item', post: post %>
+        <div class="sub">
+          <%= render 'posts/time', post: post %>
+          <%= render partial: 'posts/favorite', locals: {post: post} %>
+          <%= render 'posts/comment', post: post %>
+        </div>
+      </div>
+   </div>
+
   <% end %>
 
 </div>

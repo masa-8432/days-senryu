@@ -1,0 +1,7 @@
+<div class="time">
+<%= link_to user_path(post.user) do %>
+          <%= post.user.name %></br>
+        <% end %>
+        <%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></br>
+
+</div>

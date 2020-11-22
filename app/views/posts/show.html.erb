@@ -1,16 +1,20 @@
-
-
-
-
-
 <div class="container">
 
-<%= render 'posts/list', post: @post %>
+  <div class="row">
+    <div class="post">
+      <%= render 'posts/item', post: @post %>
+      <div class="sub">
+        <%= render 'posts/time', post: @post %>
+        <%= render 'posts/favorite', post: @post %>
+        <%= render 'posts/comment', post: @post %>
+      </div>
+    </div>
+  </div>
 
-<% if @post.user_id == current_user.id %>
-  <%= link_to '編集する', edit_post_path(@post.id) %>
-  <%= link_to '投稿を削除', post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+  <% if @post.user_id == current_user.id %>
+    <%= link_to '編集する', edit_post_path(@post.id) %>
+    <%= link_to '投稿を削除', post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <% end %>
 
 
 <div class="comment">
@@ -25,23 +29,30 @@
 
     <div class="col-2">
       <%= link_to user_path(comment.user.name) do %>
-    <%= comment.user.name %>
-    <% end %>
+        <%= comment.user.name %>
+      <% end %>
     </div>
     <div class="col-2">
-    <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
+      <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
     </div>
- <div class="col-7">
-    <%= comment.comment %>
+    <div class="col-6">
+      <%= comment.comment %>
     </div>
 
-<div class="col-1">
-  <% if comment.user_id == current_user.id %>
-    <%= link_to '削除', post_post_comment_path(@post.id,comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  <% end %>
+    <% if comment.user_id == current_user.id %>
+
+    <div class="col-1">
+      <%= link_to post_post_comment_path(@post.id,comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+    </div>
+
+    <div class="col-1">
+      <%= link_to post_post_comment_path(@post.id,comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </div>
+
+    <% end %>
   </div>
-   <% end %>
-</div>
-
-
-</div>
+  </div>

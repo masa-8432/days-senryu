@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  # ログインユーザのみアクセス許可
+  before_action :authenticate_user!
+  #ゲストログイン情報の編集不可
+  before_action :check_guest, only: [:update, :withdrawal]
+
   def show
     @user = User.find(params[:id])
   end
@@ -32,6 +37,13 @@ class UsersController < ApplicationController
       reset_session
       flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
       redirect_to root_path
+    end
+  end
+
+  def check_guest
+    if current_user.email == 'guest@guest.com'
+      flash[:notice] = "ゲストユーザーは変更・退会できません"
+      redirect_to user_path(current_user)
     end
   end
 
