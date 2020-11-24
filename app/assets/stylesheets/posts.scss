@@ -13,9 +13,8 @@
   width: 85%;
   height: 150px;
   background-image: url("/assets/post.jpg");
-  background-size: cover;
+  background-size: 100% 150px;
   background-position: center;
-
   border-bottom: solid 1px #EEEEEE;
   margin-right: 15px;
 }
@@ -32,4 +31,21 @@
 .text{
   padding-left: 15px;
   font-size: 40px;
+}
+
+.day-senryu{
+  margin-top:20px;
+}
+
+.ranking-message{
+  color: red;
+  font-size: 20px;
+}
+
+.fa-medal{
+  color: #FF9933;
+}
+
+.day-box:last-child{
+  margin-bottom: 50px;
 }

@@ -17,5 +17,14 @@ module DaysSenryu
     # the framework and any gems in your application.
 
     config.time_zone = 'Tokyo'
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
   end
+
+
+
+
 end
+
+

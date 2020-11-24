@@ -1,33 +1,37 @@
 <div class="container">
 
   <div class="row justify-content-center login">
-<div class="col-6">
-<h2><%= @user.name %>さんの投稿一覧</h2>
-</div>
-</div>
+    <div class="col-6">
+      <h2><%= @user.name %>さんの投稿一覧</h2>
+    </div>
+  </div>
 
-<% if @user.posts.count != 0 %>
+  <% if @users.count != 0 %>
 
-<% @user.posts.each do |post| %>
-
-<div class="row">
-      <div class="post">
-        <%= render 'posts/item', post: post %>
-        <div class="sub">
-          <%= render 'posts/time', post: post %>
-          <%= render partial: 'posts/favorite', locals: {post: post} %>
-          <%= render 'posts/comment', post: post %>
+    <!--ユーザの投稿があれば一覧表示する-->
+    <% @users.each do |post| %>
+      <!--投稿表示部分-->
+      <div class="row">
+        <div class="post">
+          <%= render 'posts/item', post: post %>
+          <div class="sub">
+            <%= render 'posts/time', post: post %>
+            <%= render partial: 'posts/favorite', locals: {post: post} %>
+            <%= render 'posts/comment', post: post %>
+          </div>
         </div>
       </div>
-   </div>
+    <% end %>
+  
+  <% else %>
+    <!--投稿がなければ表示-->
+    <div class="no-message-box">
+     <p class="text-center">投稿はありません</p>
+    </div>
 
-<% end %>
+  <% end %>
 
-<% else %>
-
-投稿はありません
-
-<% end %>
-
+  <!--ページネーション-->
+  <%= render 'layouts/pager', obj: @users %>
 
 </div>

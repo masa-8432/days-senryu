@@ -65,7 +65,7 @@ gem 'jquery-rails'
 gem 'pry-byebug'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 gem 'font-awesome-sass'
 gem 'rubocop-airbnb'
 gem 'dotenv-rails'
@@ -73,3 +73,5 @@ group :production do
   gem 'mysql2'
 end
 gem 'bootstrap', '~> 4.5.3'
+gem 'devise-i18n'
+gem 'rails-i18n'

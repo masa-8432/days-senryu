@@ -1,19 +1,13 @@
-
+<!--エラーメッセージ-->
 <%= render 'layouts/errors', obj: @post %>
 
 <div class="container">
   <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
+    <!--投稿フォーム-->
+    <%= render 'posts/post', f: f %>
 
- <%= render 'posts/post', f: f %>
-
- <div class="row form-group justify-content-center">
-
-  <%= f.submit '投稿する', class: "col-2 btn btn-danger btn-lg" %>
-  </div>
-
-
+    <div class="row form-group justify-content-center">
+      <%= f.submit '投稿する', class: "col-2 btn btn-danger btn-lg" %>
+    </div>
   <% end %>
-
-
-
 </div>

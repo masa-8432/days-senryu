@@ -4,14 +4,18 @@ class PostCommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = current_user.post_comments.new(post_comment_params)
-    @comment.post_id = @post.id
-    if @comment.save
-      flash[:notice] = "コメントの投稿が完了しました"
-      redirect_to request.referer
-    else
-      render '/posts/show'
+    post = Post.find(params[:post_id])
+    comment = current_user.post_comments.new(post_comment_params)
+    comment.post_id = post.id
+    console.log("create")
+    respond_to do |format|
+      if comment.save
+        # format.js {render :template => "favorites/index", locals: {post: @post}}
+        format.js {render locals: {post: post, comment: comment}}
+        flash[:notice] = "コメントを投稿しました"
+      else
+        render '/posts/show'
+      end
     end
   end
 

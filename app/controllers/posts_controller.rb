@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.order(updated_at: "DESC")
+    @posts = Post.all.order(updated_at: "DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -51,6 +51,7 @@ class PostsController < ApplicationController
 
   def like
     @post = Post.find(params[:id])
+    @post = Kaminari.paginate_array(@post.favorited_users).page(params[:page]).per(20)
   end
 
   def ranking
@@ -65,10 +66,11 @@ class PostsController < ApplicationController
   end
 
   def comment
-    #コメントステータスがtrue（募集の投稿を取り出す）
+    #コメントステータスがtrue（募集の投稿）を取り出す
     #最終編集瓶から２日たっているものは表示しないようにする（ステータスの切替はしない
     date = Date.today - 2
     @posts = Post.where(comment_status: true).where("updated_at >= '#{date}'").order(created_at: "DESC")
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
   end
 
   private

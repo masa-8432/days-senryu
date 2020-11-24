@@ -1,7 +1,8 @@
+<!--エラーメッセージ-->
 <%= render 'layouts/errors', obj: @comment %>
 
 <div class="container">
-
+  <!--投稿表示-->
   <div class="row">
     <div class="post">
       <%= render 'posts/item', post: @post %>
@@ -13,38 +14,35 @@
     </div>
   </div>
 
+  <!--投稿ユーザーとログインユーザーが同じだったらボタン表示-->
   <% if @post.user_id == current_user.id %>
     <%= link_to '編集する', edit_post_path(@post.id) %>
     <%= link_to '投稿を削除', post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   <% end %>
 
+  <!--コメント投稿フォーム-->
+  <%= render 'post_comments/post_comment_new', {post: @post, comment: @comment} %>
 
-  <div class="comment">
-    <%= form_with(model:[@post, @comment], url: post_post_comments_path(@post.id), method: :post, local: true) do |f| %>
-      <%= f.text_area :comment, class:"col-10 form-control", placeholder: "コメントを入力してください" %>
-      <%= f.submit '投稿', class:"col-1 btn btn-danger form-control" %>
-    <% end %>
-  </div>
-
+  <!--コメント数が0じゃなかったらコメントを一覧表示する-->
   <% if @post.post_comments.count != 0 %>
 
-  <div class="row comment-index">
-    <% @post.post_comments.each do |comment| %>
+    <div class="row comment-index">
+      <% @post.post_comments.each do |comment| %>
+        <!--コメント一覧表示-->
+        <div class="col-2">
+          <%= link_to user_path(comment.user.name) do %>
+            <%= comment.user.name %>さん
+          <% end %>
+        </div>
+        <div class="col-2">
+          <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
+        </div>
+        <div class="col-6">
+          <%= comment.comment %>
+        </div>
 
-      <div class="col-2">
-        <%= link_to user_path(comment.user.name) do %>
-          <%= comment.user.name %>
-        <% end %>
-      </div>
-      <div class="col-2">
-        <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
-      </div>
-      <div class="col-6">
-        <%= comment.comment %>
-      </div>
-
+      <!--コメント投稿者のみ編集・削除ボタン表示-->
       <% if comment.user_id == current_user.id %>
-
         <div class="col-1">
           <%= link_to edit_post_post_comment_path(@post.id,comment.id), method: :get do %>
             <i class="fas fa-edit"></i>
@@ -54,19 +52,19 @@
             <i class="fas fa-trash-alt"></i>
           <% end %>
         </div>
-
       <% else %>
         <div class="col-1"></div>
         <div class="col-1"></div>
-
       <% end %>
+    </div>
+  <% end %>
 
-    <% end %>
+  <% else %>
+    <!--コメント数が0だったら表示-->
+    <div class="no-message-box">
+      <p class="text-center">コメントはありません</p>
+    </div>
 
-    <% else %>
+  <% end %>
 
-    コメントはまだありません
-
-     <% end %>
-  </div>
 </div>

@@ -1,7 +1,13 @@
 <div class="container" >
- <% @posts.each do |post| %>
 
-   <div class="row">
+  <div class="cmment_status">
+    <p class="ranking-message">投稿時に「コメントを募集しますか？」で「はい」を選択した投稿が二日間表示されます。</br>
+    たくさんのコメントお待ちしております！</p>
+  </div>
+
+  <!--投稿表示部分-->
+  <% @posts.each do |post| %>
+    <div class="row">
       <div class="post">
         <%= render 'posts/item', post: post %>
         <div class="sub">
@@ -10,7 +16,10 @@
           <%= render 'posts/comment', post: post %>
         </div>
       </div>
-   </div>
- <% end %>
+    </div>
+  <% end %>
+
+  <!--ページネーション-->
+  <%= render 'layouts/pager', obj: @posts %>
 
 </div>

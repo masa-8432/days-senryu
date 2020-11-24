@@ -1,9 +1,12 @@
+<!--いいねボタン、件数表示-->
 <div class="favorite_btn_<%= post.id %>">
   <% if post.favorited_by?(current_user) %>
+    <!--投稿に対してユーザーがイイねしている場合-->
     <%= link_to post_favorites_path(post), method: :delete, remote: true, data: {"turbolinks" => false} do %>
       <i class="fas fa-heart" aria-hidden="true" style="color: red"></i>&nbsp;
     <% end %>
   <% else %>
+    <!--投稿に対してユーザーがイイねしていない場合-->
     <%= link_to post_favorites_path(post), method: :post, remote: true, data: {"turbolinks" => false} do %>
       <i class="far fa-heart" aria-hidden="true"></i>&nbsp;
     <% end %>

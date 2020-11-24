@@ -25,10 +25,12 @@ class UsersController < ApplicationController
 
   def post
     @user = User.find(params[:id])
+    @users = Kaminari.paginate_array(@user.posts).page(params[:page]).per(20)
   end
 
   def like
     @user = User.find(params[:id])
+    @users = Kaminari.paginate_array(@user.favorite_posts).page(params[:page]).per(10)
   end
 
   def withdrawal

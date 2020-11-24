@@ -1,14 +1,13 @@
 <div class="container">
 
   <div class="message" >
-本当に退会しますか？</br>
-退会すると、今までのデータは全て消去されます。
-</div>
+    本当に退会しますか？</br>
+    退会すると、今までのデータは全て消去されます。
+  </div>
 
- <div class="row justify-content-center align-items-start mt-5">
-   <%= link_to '戻る', user_path(current_user), method: :get, class: "btn btn-danger btn-lg col-3 mr-3" %>
+  <div class="row justify-content-center align-items-start mt-5">
+    <%= link_to '戻る', user_path(current_user), method: :get, class: "btn btn-danger btn-lg col-3 mr-3" %>
     <%= link_to '退会する', withdrawal_user_path(current_user), method: :patch, class: "btn btn-danger btn-sm col-1" %>
-
   </div>
 
 </div>

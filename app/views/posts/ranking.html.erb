@@ -1,23 +1,34 @@
 <div class="container">
 
+  <div class="ranking">
+    <p class="ranking-message">過去三日間の投稿の中でいいね数が一番多かった投稿を表示しています</p>
+  </div>
+
+  <!--今日の一位-->
   <% @today.each do |post| %>
-今日の一句
-  <div class="row">
-      <div class="post">
-        <%= render 'posts/item', post: post %>
-        <div class="sub">
-          <%= render 'posts/time', post: post %>
-          <%= render partial: 'posts/favorite', locals: {post: post} %>
-          <%= render 'posts/comment', post: post %>
+    <div class="day-senryu">
+      <h2><i class="fas fa-medal"></i>今日の一句<i class="fas fa-medal"></i></h2>
+    </div>
+    <!--投稿表示-->
+    <div class="row day-box">
+        <div class="post">
+          <%= render 'posts/item', post: post %>
+          <div class="sub">
+            <%= render 'posts/time', post: post %>
+            <%= render partial: 'posts/favorite', locals: {post: post} %>
+            <%= render 'posts/comment', post: post %>
+          </div>
         </div>
-      </div>
-   </div>
-
+     </div>
   <% end %>
 
+  <!--昨日の一位-->
   <% @yesterday.each do |post| %>
-昨日の一句
-  <div class="row">
+    <div class="day-senryu">
+      <h2><i class="fas fa-medal"></i>昨日の一句<i class="fas fa-medal"></i></h2>
+    </div>
+    <!--投稿表示-->
+    <div class="row day-box">
       <div class="post">
         <%= render 'posts/item', post: post %>
         <div class="sub">
@@ -26,13 +37,16 @@
           <%= render 'posts/comment', post: post %>
         </div>
       </div>
-   </div>
-
+    </div>
   <% end %>
 
+  <!--一昨日の一位-->
   <% @day_before_yesterday.each do |post| %>
-一昨日の一句
-  <div class="row">
+    <div class="day-senryu">
+      <h2><i class="fas fa-medal"></i>一昨日の一句<i class="fas fa-medal"></i></h2>
+    </div>
+    <!--投稿表示-->
+    <div class="row day-box">
       <div class="post">
         <%= render 'posts/item', post: post %>
         <div class="sub">
@@ -41,8 +55,7 @@
           <%= render 'posts/comment', post: post %>
         </div>
       </div>
-   </div>
-
+    </div>
   <% end %>
 
 </div>

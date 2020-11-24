@@ -1,5 +1,5 @@
-
+<!--コメントボタン、件数表示-->
 <i class="far fa-comment-alt"></i>&nbsp;
-        <%= link_to post_path(post.id) do %>
-          <%= post.post_comments.count %>
-         <% end %>
+<%= link_to post_path(post.id) do %>
+  <%= post.post_comments.count %>
+<% end %>

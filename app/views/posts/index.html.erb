@@ -1,7 +1,7 @@
 <div class="container" >
  <% @posts.each do |post| %>
-
-   <div class="row">
+    <!--投稿表示-->
+    <div class="row">
       <div class="post">
         <%= render 'posts/item', post: post %>
         <div class="sub">
@@ -10,7 +10,9 @@
           <%= render 'posts/comment', post: post %>
         </div>
       </div>
-   </div>
+    </div>
  <% end %>
 
+  <!--ぺージネーション-->
+  <%= render 'layouts/pager', obj: @posts %>
 </div>

@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        theme: "お題"
+        text: "本文"
+      post_comment:
+        comment: "コメント"
+      
