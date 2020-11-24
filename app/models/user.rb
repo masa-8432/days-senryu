@@ -16,16 +16,15 @@ class User < ApplicationRecord
   validates :age, presence: true
   validates :email, presence: true
 
-
   # 性別をenumで管理
-  enum gender: {'男性': 0, '女性': 1, 'その他': 2}
+  enum gender: { '男性': 0, '女性': 1, 'その他': 2 }
 
   # 年齢をenumで管理
-  enum age: { '10代':0, '20代':1, '30代':2, '40代':3, '50代':4, '60代':5, '70歳以上':6 }
+  enum age: { '10代': 0, '20代': 1, '30代': 2, '40代': 3, '50代': 4, '60代': 5, '70歳以上': 6 }
 
   # ログインするときに退会済のユーザーを弾く
   def active_for_authentication?
-   super && (self.is_dleted == false)
+    super && (is_dleted == false)
   end
 
   # ゲストログインのアカウント
@@ -34,5 +33,4 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
-
 end

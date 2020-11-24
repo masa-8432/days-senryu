@@ -46,12 +46,11 @@ class Users::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(email: params[:user][:email])
     if @user
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false ))
+      if @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false)
         flash[:notice] = "退会済みのユーザーです"
         redirect_to new_user_session_path
       end
     else
     end
   end
-
 end

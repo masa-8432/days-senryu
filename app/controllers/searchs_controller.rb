@@ -1,5 +1,4 @@
 class SearchsController < ApplicationController
-
   # ログインユーザのみアクセス許可
   before_action :authenticate_user!
 
@@ -28,7 +27,7 @@ class SearchsController < ApplicationController
       end
       render "/posts/index"
     else
-       render "/posts/index"
+      render "/posts/index"
     end
   end
 
@@ -36,18 +35,16 @@ class SearchsController < ApplicationController
 
   # お題検索
   def partical_theme(content)
-      Post.where("theme LIKE ?", "%#{content}%")
+    Post.where("theme LIKE ?", "%#{content}%")
   end
 
   # 本文検索
   def partical_text(content)
-      Post.where("text LIKE ?", "%#{content}%")
+    Post.where("text LIKE ?", "%#{content}%")
   end
 
-   # 投稿者検索
+  # 投稿者検索
   def partical_user(content)
-      Post.left_outer_joins(:user).where("name LIKE ?", "%#{content}%")
+    Post.left_outer_joins(:user).where("name LIKE ?", "%#{content}%")
   end
-
-
 end

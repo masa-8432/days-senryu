@@ -1,5 +1,4 @@
 class PostCommentsController < ApplicationController
-
   # ログインユーザのみアクセス許可
   before_action :authenticate_user!
 
@@ -11,7 +10,7 @@ class PostCommentsController < ApplicationController
     respond_to do |format|
       if comment.save
         # format.js {render :template => "favorites/index", locals: {post: @post}}
-        format.js {render locals: {post: post, comment: comment}}
+        format.js { render locals: { post: post, comment: comment } }
         flash[:notice] = "コメントを投稿しました"
       else
         render '/posts/show'
@@ -36,7 +35,7 @@ class PostCommentsController < ApplicationController
   end
 
   def destroy
-    if PostComment.find_by(id:params[:id], post_id: params[:post_id]).destroy
+    if PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
       flash[:notice] = "コメントを削除しました"
       redirect_to post_path(params[:post_id])
     end
@@ -47,5 +46,4 @@ class PostCommentsController < ApplicationController
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end
-
 end

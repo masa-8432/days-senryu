@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   # ログインユーザのみアクセス許可
   before_action :authenticate_user!
 
@@ -10,7 +9,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       if favorite.save
         # format.js {render :template => "favorites/index", locals: {post: @post}}
-        format.js {render locals: {post: @post}}
+        format.js { render locals: { post: @post } }
       end
     end
   end
@@ -21,9 +20,8 @@ class FavoritesController < ApplicationController
     @posts = Post.all
     respond_to do |format|
       if favorite.destroy
-        format.js {render locals: {post: @post}}
+        format.js { render locals: { post: @post } }
       end
     end
   end
-
 end

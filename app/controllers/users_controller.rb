@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-
   # ログインユーザのみアクセス許可
   before_action :authenticate_user!
-  #ゲストログイン情報の編集不可
+  # ゲストログイン情報の編集不可
   before_action :check_guest, only: [:update, :withdrawal]
 
   def show
@@ -54,5 +53,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :gender, :age, :email)
   end
-
 end
