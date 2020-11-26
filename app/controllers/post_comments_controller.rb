@@ -8,7 +8,7 @@ class PostCommentsController < ApplicationController
     @comment.post_id = @post.id
     if @comment.save
       @comment = PostComment.new
-      flash[:notice] = "コメントを投稿しました"
+      flash.now[:notice] = "コメントを投稿しました"
     else
       render '/posts/show'
     end
@@ -31,9 +31,11 @@ class PostCommentsController < ApplicationController
   end
 
   def destroy
-    if PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
-      flash[:notice] = "コメントを削除しました"
-      redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    @comment = PostComment.find_by(id: params[:id], post_id: @post.id)
+    if @comment.destroy
+      @comment = PostComment.new
+      flash.now[:notice] = "コメントを削除しました"
     end
   end
 

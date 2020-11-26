@@ -3,12 +3,18 @@
 
 <div class="container">
 
+  <h2 class="post-title">投稿編集</h2>
+
   <%= form_with model: @post, url: post_path, method: :patch, local: true do |f| %>
     <!--編集フォーム-->
     <%= render 'posts/post', f: f %>
     <div class="row form-group justify-content-center">
-      <%= f.submit '更新する', class: "col-2 btn btn-danger btn-lg" %>
+      <%= f.submit '更新する', class: "col-2 btn btn-info btn-lg" %>
     </div>
   <% end %>
+
+  <div class="row">
+    <%=link_to '戻る', post_path(@post), class: "col-1" %>
+  </div>
 
 </div>

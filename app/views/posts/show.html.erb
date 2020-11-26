@@ -17,8 +17,9 @@
   <!--投稿ユーザーとログインユーザーが同じだったらボタン表示-->
   <% if @post.user_id == current_user.id %>
     <%= link_to '編集する', edit_post_path(@post.id) %>
-    <%= link_to '投稿を削除', post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <%= link_to '投稿を削除', post_path(@post.id), method: :delete, remote: true, data: {"turbolinks" => false}, "data-confirm" => "本当に削除しますか？" %>
   <% end %>
+
 
   <!--コメント投稿、表示フォーム-->
   <div class="comment_new_btn">

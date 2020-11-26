@@ -12,7 +12,7 @@
 .main{
   width: 85%;
   height: 150px;
-  background-image: url("/assets/post.jpg");
+  background-image: image-url("/assets/post.jpg");
   background-size: 100% 150px;
   background-position: center;
   border-bottom: solid 1px #EEEEEE;
@@ -48,4 +48,8 @@
 
 .day-box:last-child{
   margin-bottom: 50px;
+}
+
+.post-title{
+  margin-top: 10px;
 }

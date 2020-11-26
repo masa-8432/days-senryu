@@ -11,18 +11,19 @@
     </div>
     <!--投稿表示-->
     <div class="row day-box">
-        <div class="post">
-          <%= render 'posts/item', post: post %>
-          <div class="sub">
-            <%= render 'posts/time', post: post %>
-            <%= render partial: 'posts/favorite', locals: {post: post} %>
-            <%= render 'posts/comment', post: post %>
-          </div>
+      <div class="post">
+        <%= render 'posts/item', post: post %>
+        <div class="sub">
+          <%= render 'posts/time', post: post %>
+          <%= render partial: 'posts/favorite', locals: {post: post} %>
+          <%= render 'posts/comment', post: post %>
         </div>
-     </div>
+      </div>
+    </div>
   <% end %>
 
   <!--昨日の一位-->
+
   <% @yesterday.each do |post| %>
     <div class="day-senryu">
       <h2><i class="fas fa-medal"></i>昨日の一句<i class="fas fa-medal"></i></h2>
