@@ -19,6 +19,7 @@
 　日常のふとした瞬間に
 
 ## 設計書
+  https://docs.google.com/spreadsheets/d/1Udimmt-2YF8GR2mEs_3lDmcE4s9o-s6VlIW84R4F3zM/edit#gid=327983481
 
 ### 機能一覧
 　https://docs.google.com/spreadsheets/d/1wP0XfghZCygNurYonBS-Z_I_7gGMJ7EXqimvW_2lEL8/edit#gid=458044915
