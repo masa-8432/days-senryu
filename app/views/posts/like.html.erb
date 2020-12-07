@@ -1,6 +1,8 @@
 <div class="container">
 
-  <h2>この投稿にいいねしたユーザー</h2>
+  <div class="post-title">
+    <h2>この投稿にいいねしたユーザー</h2>
+  </div>
 
   <% if @post.count != 0 %>
     <% @post.each do |user| %>

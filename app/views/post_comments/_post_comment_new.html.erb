@@ -27,6 +27,11 @@
         <div class="col-6">
           <%= comment.comment %>
         </div>
+        <div class="col-1">
+          <div class="score text-center">
+            <%= comment.score %>
+          </div>
+        </div>
 
       <!--コメント投稿者のみ編集・削除ボタン表示-->
       <% if comment.user_id == current_user.id %>

@@ -6,6 +6,8 @@ class PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_id = @post.id
+    # APIにリクエスト送信
+    @comment.score = Language.get_data(post_comment_params[:comment])
     if @comment.save
       @comment = PostComment.new
       flash.now[:notice] = "コメントを投稿しました"

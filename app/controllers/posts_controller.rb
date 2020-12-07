@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(updated_at: "DESC").page(params[:page]).per(10)
+
   end
 
   def new
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = PostComment.new
+    @score = @post.post_comments.average(:score)
   end
 
   def edit

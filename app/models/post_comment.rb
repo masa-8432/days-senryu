@@ -5,4 +5,5 @@ class PostComment < ApplicationRecord
 
   # バリデーション
   validates :comment, presence: true
+
 end
