@@ -1,0 +1,43 @@
+<!--ログインしている場合-->
+
+<header class="fixed-top">
+    <!--ナビゲーションバー-->
+    <nav class="navbar">
+      <!--ヘッダーのロゴ-->
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png", class:"navbar-brand" %>
+      <% end %>
+      <ul class="navbar nav justify-content-end">
+        <li class="nav-item"><p><%= current_user.name %>さん</p></li>
+        <li class="nav-item"><i class="fas fa-user-cog"><%= link_to 'マイページ', user_path(current_user) %></i></li>&nbsp&nbsp
+        <li class="nav-item"><i class="fas fa-sign-out-alt"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></i></li>
+      </ul>
+    </nav>
+    <!--ログイン時のみメニューバー表示-->
+    <nav class="navbar nav justify-content-center menu-bar">
+      <ul class="nav">
+        <li class="menu"><i class="fas fa-indent">&nbsp<%= link_to '投稿一覧', posts_path %></i></li>
+        <li class="menu"><i class="fas fa-plus-square">&nbsp<%= link_to '投稿する', new_post_path %></i></li>
+        <li class="menu"><i class="fas fa-crown">&nbsp<%= link_to '今日の一句', ranking_posts_path %></i></li>
+        <li class="menu"><i class="fas fa-comment-dots">&nbsp<%= link_to 'コメント募集', comment_posts_path %></i></li>
+          <div class="row justify-content-cemter search">
+            <%= form_with url: search_path, method: :get, class: "form-inline", local: true do |f| %>
+              <div class="bar">
+                <%= f.select :model, [["お題","theme"],["川柳","text"],["投稿ユーザー","user"]], {}, {class: "form-control input-sm"} %>
+              </div>
+              <div class="bar">
+                <%= f.text_field :content, :placeholder => "Search", class: "form-control input-sm" %>
+                <%= f.button :type => "submit", style: 'border-style: none;', class:"btn search-btn" do %>
+                  <i class='fas fa-search'></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </ul>
+    </nav>
+  </header>
+
+  <!--ログインしている時のheaderの高さ指定-->
+  <div class="sign_in-box">
+  </div>

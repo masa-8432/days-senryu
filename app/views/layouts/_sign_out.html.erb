@@ -1,0 +1,20 @@
+<!--ログインしていない場合-->
+
+<header class="fixed-top">
+  <!--ナビゲーションバー-->
+  <nav class="navbar">
+    <!--ヘッダーのロゴ-->
+    <%= link_to root_path do %>
+      <%= image_tag "logo.png", class:"navbar-brand" %>
+    <% end %>
+    <ul class="navbar nav justify-content-end">
+      <li class="nav-item"><i class="fas fa-sign-in-alt"><%= link_to 'ログイン', new_user_session_path %></i></li>&nbsp&nbsp
+      <li class="nav-item"><i class="fas fa-user-plus"><%= link_to '新規登録', new_user_registration_path %></i></li>
+    </ul>
+  </nav>
+</header>
+
+<!--ログインしていない時のheaderの高さ指定-->
+<div class="sign_out-box">
+</div>
+  
