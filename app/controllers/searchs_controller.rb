@@ -11,19 +11,19 @@ class SearchsController < ApplicationController
     if @type == "theme"
       @posts = partical_theme(@content).page(params[:page]).per(10)
       if @posts.count == 0
-        flash[:notice] = "該当する投稿は見つかりませんでした。"
+        flash.now[:notice] = "該当する投稿は見つかりませんでした。"
       end
       render "/posts/index"
     elsif @type == "text"
       @posts = partical_text(@content).page(params[:page]).per(10)
       if @posts.count == 0
-        flash[:notice] = "該当する投稿は見つかりませんでした。"
+        flash.now[:notice] = "該当する投稿は見つかりませんでした。"
       end
       render "/posts/index"
     elsif @type == "user"
       @posts = partical_user(@content).page(params[:page]).per(10)
       if @posts.count == 0
-        flash[:notice] = "該当する投稿は見つかりませんでした。"
+        flash.now[:notice] = "該当する投稿は見つかりませんでした。"
       end
       render "/posts/index"
     else
@@ -47,4 +47,5 @@ class SearchsController < ApplicationController
   def partical_user(content)
     Post.left_outer_joins(:user).where("name LIKE ?", "%#{content}%")
   end
+  
 end

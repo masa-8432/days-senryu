@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(updated_at: "DESC").page(params[:page]).per(10)
-
   end
 
   def new
@@ -79,4 +78,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:theme, :text, :comment_status)
   end
+
 end
